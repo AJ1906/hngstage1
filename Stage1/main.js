@@ -1,38 +1,20 @@
-let wday = document.getElementById("currentDayOfTheWeek")
-let time = document.getElementById("currentUTCTime");
+  function updateDayOfWeekAndUTCTime() {
+    const dayOfWeekElement = document.getElementById("currentDayOfTheWeek");
+    const utcTimeElement = document.getElementById("currentUTCTime");
 
+    const currentDayOfWeek = new Date().getUTCDay();
+    const daysOfWeek = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+    const dayOfWeekString = daysOfWeek[currentDayOfWeek];
 
-let d = new Date();
-let day = d.getDay();
+    const currentUTCTimeInMillis = new Date().getTime();
 
-switch (day){
-    case 0:
-        day = "Sunday";
-        break;
-    case 1:
-        day = "Monday";
-        break;
-    case 2:
-        day = "Tuesday";
-        break;
-    case 3:
-        day = "Wednesday";
-        break;
-    case 4:
-        day = "Thursday";
-        break;
-    case 5:
-         day = "Friday"
-         break;
-    case 6:
-        day = "Saturday"
-        break;
+    dayOfWeekElement.innerHTML = dayOfWeekString;
+    utcTimeElement.innerHTML = currentUTCTimeInMillis;
 }
 
-wday.innerHTML = day;
+
+updateDayOfWeekAndUTCTime(); 
 
 
- setInterval(() =>{
-     let d = new Date();
-     time.innerHTML = d.toLocaleTimeString();
- },1000)
+setInterval(updateDayOfWeekAndUTCTime, 1000);
+
